@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.ac.sunmoon.urs.member.MemberMapper">
+    <resultMap id="memberResultMap" type="kr.ac.sunmoon.urs.member.Member">
+        <result column="MEMBER_NO" property="memberNo" />
+        <result column="DEPT_NO" property="deptNo" />
+        <result column="NAME" property="name" />
+        <result column="PASSWORD" property="password" />
+        <result column="CARD_NO" property="cardNo" />
+        <result column="PHONE" property="phone" />
+        <result column="TYPE" property="type" />
+        <result column="DEPT_NAME" property="deptName"/>
+    </resultMap>
+
+    <sql id="whereSql">
+        <where>
+            <if test="memberNo != 0">
+                AND MEMBER_NO = #{memberNo}
+            </if>
+            <if test="deptNo != 0">
+                AND DEPT_NO = #{deptNo}
+            </if>
+            <if test="name != null and name != ''">
+                AND NAME = #{name}
+            </if>
+            <if test="password != null and password != ''">
+                AND PASSWORD = #{password}
+            </if>
+            <if test="cardNo != null and cardNo != ''">
+                AND CARD_NO = #{cardNo}
+            </if>
+            <if test="phone != null and phone != ''">
+                AND PHONE = #{phone}
+            </if>
+            <if test="type != null and type != ''">
+                AND TYPE = #{type}
+            </if>
+        </where>
+    </sql>
+
+    <select id="count" parameterType="kr.ac.sunmoon.urs.member.Member" resultType="int">
+        SELECT COUNT(*)
+        FROM MEMBER
+        <include refid="whereSql" />
+    </select>
+
+    <select id="list" parameterType="kr.ac.sunmoon.urs.member.Member" resultMap="memberResultMap">
+        SELECT
+              M.MEMBER_NO AS MEMBER_NO
+            , M.NAME AS NAME
+            , D.NAME AS DEPT_NAME
+        FROM MEMBER M, DEPT D
+        WHERE D.NO = M.DEPT_NO
+        <if test="memberNo != 0">
+            AND MEMBER_NO = #{memberNo}
+        </if>
+        <if test="type != null and type != ''">
+            AND TYPE = #{type}
+        </if>
+        <if test="deptNo != 0">
+            AND DEPT_NO = #{deptNo}
+        </if>
+        ORDER BY D.NAME, M.MEMBER_NO
+    </select>
+
+    <select id="select" parameterType="kr.ac.sunmoon.urs.member.Member" resultMap="memberResultMap">
+        SELECT
+			  MEMBER_NO
+            , DEPT_NO
+            , NAME
+            , PASSWORD
+            , CARD_NO
+            , PHONE
+            , TYPE
+        FROM MEMBER
+        <include refid="whereSql" />
+    </select>
+
+    <insert id="insert" parameterType="kr.ac.sunmoon.urs.member.Member">
+        INSERT INTO MEMBER (
+              MEMBER_NO
+            , DEPT_NO
+            , NAME
+            , PASSWORD
+            , CARD_NO
+            , PHONE
+            , TYPE
+        ) VALUES (
+              #{memberNo}
+            , #{deptNo}
+            , #{name}
+            , #{password}
+            , #{cardNo}
+            , #{phone}
+            , #{type}
+        )
+    </insert>
+
+    <update id="update" parameterType="kr.ac.sunmoon.urs.member.Member">
+        UPDATE MEMBER
+        <set>
+            <if test="name != null and name != ''">
+                NAME = #{name},
+            </if>
+            <if test="deptNo != 0">
+                DEPT_NO = #{deptNo},
+            </if>
+            <if test="password != null and password != ''">
+                PASSWORD = #{password},
+            </if>
+            <if test="cardNo != null and cardNo != ''">
+                CARD_NO = #{cardNo},
+            </if>
+            <if test="phone != null and phone != ''">
+                PHONE = #{phone},
+            </if>
+        </set>
+        WHERE MEMBER_NO = #{memberNo}
+    </update>
+
+    <delete id="delete" parameterType="kr.ac.sunmoon.urs.member.Member">
+        DELETE FROM MEMBER
+        <include refid="whereSql" />
+    </delete>
+</mapper>

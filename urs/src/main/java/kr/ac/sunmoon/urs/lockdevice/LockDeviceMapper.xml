@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.ac.sunmoon.urs.lockdevice.LockDeviceMapper">
+    <resultMap id="lockDeviceResultMap" type="kr.ac.sunmoon.urs.lockdevice.LockDevice">
+        <result column="NO" property="no" />
+        <result column="EMP_NO" property="empNo" />
+        <result column="DEPT_NO" property="deptNo" />
+        <result column="STATUS" property="status" />
+        <result column="DEPT_NAME" property="deptName"/>
+    </resultMap>
+
+    <sql id="whereSql">
+        <where>
+            <if test="no != null and no != ''">
+                AND NO = #{no}
+            </if>
+            <if test="empNo != null and empNo != ''">
+                AND EMP_NO = #{empNo}
+            </if>
+            <if test="deptNo != null and deptNo != ''">
+                AND DEPT_NO = #{deptNo}
+            </if>
+            <if test="status != null and status != ''">
+                AND STATUS = #{status}
+            </if>
+        </where>
+    </sql>
+
+    <select id="count" parameterType="kr.ac.sunmoon.urs.lockdevice.LockDevice" resultType="int">
+        SELECT COUNT(*)
+        FROM LOCK_DEVICE
+        <include refid="whereSql" />
+    </select>
+
+    <select id="list" parameterType="kr.ac.sunmoon.urs.lockdevice.LockDevice" resultMap="lockDeviceResultMap">
+        SELECT
+			  L.NO AS NO
+			, L.DEPT_NO AS DEPT_NO
+			, L.EMP_NO AS EMP_NO
+			, L.STATUS AS STATUS
+			, D.NAME AS DEPT_NAME
+		FROM LOCK_DEVICE L, DEPT D
+		WHERE L.DEPT_NO = D.NO
+		<if test="no != null and no != ''">
+            AND L.NO = #{no}
+        </if>
+        <if test="deptNo != null and deptNo != ''">
+            AND DEPT_NO = #{deptNo}
+        </if>
+		<if test="empNo != null and empNo != ''">
+            AND L.EMP_NO = #{empNo}
+        </if>
+		<if test="deptName != null and deptName != ''">
+            AND NAME LIKE '%${deptName}%'
+        </if>      
+		ORDER BY NAME
+    </select>
+    
+    <select id="select" parameterType="kr.ac.sunmoon.urs.lockdevice.LockDevice" resultMap="lockDeviceResultMap">
+        SELECT
+              NO
+            , EMP_NO
+            , DEPT_NO
+            , STATUS
+        FROM LOCK_DEVICE
+        <include refid="whereSql" />
+    </select>
+
+    <insert id="insert" parameterType="kr.ac.sunmoon.urs.lockdevice.LockDevice">
+        INSERT INTO LOCK_DEVICE (
+              NO
+            , EMP_NO
+            , DEPT_NO
+            , STATUS
+        ) VALUES (
+              #{no}
+            , #{empNo}
+            , #{deptNo}
+            , #{status}
+        )
+    </insert>
+
+    <update id="update" parameterType="kr.ac.sunmoon.urs.lockdevice.LockDevice">
+        UPDATE LOCK_DEVICE
+        <set>
+            <if test="empNo != ''">
+                EMP_NO = #{empNo},
+            </if>
+            <if test="deptNo != ''">
+                DEPT_NO = #{deptNo},
+            </if>
+            <if test="status != ''">
+                STATUS = #{status},
+            </if>
+        </set>
+        WHERE NO = #{no}
+    </update>
+
+    <delete id="delete" parameterType="kr.ac.sunmoon.urs.lockdevice.LockDevice">
+        DELETE FROM LOCK_DEVICE
+        <include refid="whereSql" />
+    </delete>
+</mapper>

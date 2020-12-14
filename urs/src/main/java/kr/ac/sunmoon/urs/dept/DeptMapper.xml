@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.ac.sunmoon.urs.dept.DeptMapper">
+    <resultMap id="deptResultMap" type="kr.ac.sunmoon.urs.dept.Dept">
+        <result column="NO" property="no" />
+        <result column="NAME" property="name" />
+        <result column="TEL" property="tel" />
+        <result column="LOCATION" property="location" />
+    </resultMap>
+
+    <sql id="whereSql">
+        <where>
+            <if test="no != null and no != ''">
+                AND NO = #{no}
+            </if>
+            <if test="name != null and name != ''">
+                AND NAME LIKE '%${name}%'
+            </if>
+            <if test="tel != null and tel != ''">
+                AND TEL = #{tel}
+            </if>
+            <if test="location != null and location != ''">
+                AND LOCATION = #{location}
+            </if>
+        </where>
+    </sql>
+
+    <select id="count" parameterType="kr.ac.sunmoon.urs.dept.Dept" resultType="int">
+        SELECT COUNT(*)
+        FROM DEPT
+        <include refid="whereSql" />
+    </select>
+
+    <select id="list" parameterType="kr.ac.sunmoon.urs.dept.Dept" resultMap="deptResultMap">
+        SELECT
+              NO
+            , NAME
+            , TEL
+            , LOCATION
+        FROM DEPT
+        <include refid="whereSql" />
+        ORDER BY NAME
+    </select>
+
+    <select id="select" parameterType="kr.ac.sunmoon.urs.dept.Dept" resultMap="deptResultMap">
+        SELECT
+              NO
+            , NAME
+            , TEL
+            , LOCATION
+        FROM DEPT
+        <include refid="whereSql" />
+    </select>
+
+    <insert id="insert" parameterType="kr.ac.sunmoon.urs.dept.Dept">
+        INSERT INTO DEPT (
+              NO
+            , NAME
+            , TEL
+            , LOCATION
+        ) VALUES (
+              #{no}
+            , #{name}
+            , #{tel}
+            , #{location}
+        )
+    </insert>
+
+    <update id="update" parameterType="kr.ac.sunmoon.urs.dept.Dept">
+        UPDATE dept
+        <set>
+            <if test="name != ''">
+                NAME = #{name},
+            </if>
+            <if test="tel != ''">
+                TEL = #{tel},
+            </if>
+            <if test="location != ''">
+                LOCATION = #{location},
+            </if>
+        </set>
+        WHERE NO = #{no}
+    </update>
+
+    <delete id="delete" parameterType="kr.ac.sunmoon.urs.dept.Dept">
+        DELETE FROM DEPT
+        <include refid="whereSql" />
+    </delete>
+</mapper>

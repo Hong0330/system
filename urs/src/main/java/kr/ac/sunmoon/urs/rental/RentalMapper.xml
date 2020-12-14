@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.ac.sunmoon.urs.rental.RentalMapper">
+    <resultMap id="rentalResultMap" type="kr.ac.sunmoon.urs.rental.Rental">
+        <result column="NO" property="no" />
+        <result column="STUDENT_NO" property="studentNo" />
+        <result column="LOCK_DEVICE_NO" property="lockDeviceNo" />
+        <result column="RENTAL_DATE" property="rentalDate" />
+        <result column="RETURN_DATE" property="returnDate" />
+        <result column="STATUS" property="status" />
+    </resultMap>
+
+    <sql id="whereSql">
+        <where>
+            <if test="no != null and no != ''">
+                AND NO = #{no}
+            </if>
+            <if test="studentNo != null and studentNo != ''">
+                AND STUDENT_NO = #{studentNo}
+            </if>
+            <if test="lockDeviceNo != null and lockDeviceNo != ''">
+                AND LOCK_DEVICE_NO = #{lockDeviceNo}
+            </if>
+            <if test="rentalDate != null">
+                AND RENTAL_DATE = #{rentalDate}
+            </if>
+            <if test="returnDate != null">
+                AND RETURN_DATE = #{returnDate}
+            </if>
+            <if test="status != null and status != ''">
+                AND STATUS = #{status}
+            </if>
+        </where>
+    </sql>
+
+    <select id="count" parameterType="kr.ac.sunmoon.urs.rental.Rental" resultType="int">
+        SELECT COUNT(*)
+        FROM RENTAL
+        <include refid="whereSql" />
+    </select>
+
+    <select id="list" parameterType="kr.ac.sunmoon.urs.rental.Rental" resultMap="rentalResultMap">
+        SELECT
+              NO
+            , STUDENT_NO
+            , LOCK_DEVICE_NO
+            , RENTAL_DATE
+            , RETURN_DATE
+            , STATUS
+        FROM RENTAL
+        <include refid="whereSql" />
+        ORDER BY 
+              STATUS ASC
+            , RENTAL_DATE DESC
+            , STUDENT_NO DESC
+    </select>
+
+    <select id="select" parameterType="kr.ac.sunmoon.urs.rental.Rental" resultMap="rentalResultMap">
+        SELECT
+              NO
+            , STUDENT_NO
+            , LOCK_DEVICE_NO
+            , RENTAL_DATE
+            , RETURN_DATE
+            , STATUS
+        FROM RENTAL
+        <include refid="whereSql" />
+    </select>
+    
+    <select id="selectByLastOne" parameterType="kr.ac.sunmoon.urs.rental.Rental" resultMap="rentalResultMap">
+    	SELECT 
+    		  NO
+            , STUDENT_NO
+            , LOCK_DEVICE_NO
+            , RENTAL_DATE
+            , RETURN_DATE
+            , STATUS 
+    	FROM RENTAL 
+    	<where>
+            <if test="studentNo != null and studentNo != ''">
+                AND STUDENT_NO = #{studentNo}
+            </if>
+            <if test="lockDeviceNo != null and lockDeviceNo != ''">
+            AND LOCK_DEVICE_NO = #{lockDeviceNo}
+        	</if>
+        </where>
+    	ORDER BY NO DESC LIMIT 1;
+    </select>
+
+    <insert id="insert" parameterType="kr.ac.sunmoon.urs.rental.Rental">
+        INSERT INTO rental (
+              STUDENT_NO
+            , LOCK_DEVICE_NO
+            , RENTAL_DATE
+        ) VALUES (
+              #{studentNo}
+            , #{lockDeviceNo}
+            , #{rentalDate}
+        )
+    </insert>
+
+    <update id="update" parameterType="kr.ac.sunmoon.urs.rental.Rental">
+        UPDATE rental
+        <set>
+            <if test="returnDate != null">
+                RETURN_DATE = DATE_ADD(#{returnDate}, INTERVAL 9 HOUR),
+            </if>
+            <if test="status != ''">
+                STATUS = #{status},
+            </if>
+        </set>
+        WHERE NO = #{no}
+    </update>
+
+    <delete id="delete" parameterType="kr.ac.sunmoon.urs.rental.Rental">
+        DELETE FROM rental
+        <where>
+            <if test="no != null and no != ''">
+                AND NO = #{no}
+            </if>
+            <if test="lockDeviceNo != null and lockDeviceNo != ''">
+                AND LOCK_DEVICE_NO = #{lockDeviceNo}
+            </if>
+            <if test="studentNo != null and studentNo != ''">
+                AND STUDENT_NO = #{studentNo}
+            </if>
+        </where>
+    </delete>
+</mapper>
