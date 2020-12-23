@@ -8,7 +8,7 @@
 		<h4 class="font-weight-bold text-uppercase text-4 mb-3">학과 정보 등록</h4>
 			<form action="${request.getContextPath()}/dept" method="post" class="needs-validation" onsubmit="return check(this)" >
 				<div class="form-group row">
-					<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">학과명</label>
+					<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">학과 명</label>
 					<div class="col-lg-9">
 						<input id="name" class="form-control" type="text" name="name" maxlength="33" required>
 					</div>
@@ -72,7 +72,7 @@
 					if (row === null) {
 						form.submit();
 					} else {
-						document.getElementById("error").innerHTML = "<font size=\"2em\" color=\"red\">이미 존재하는 학과명입니다.</font>";
+						document.getElementById("error").innerHTML = "<font size=\"2em\" color=\"red\">이미 존재하는 학과 명입니다.</font>";
 					}
 				} else {
 					console.error(xhr.responseText);

@@ -3,9 +3,9 @@
 
 <%@ include file="/WEB-INF/jsp/layout/top.jsp" %>
 
-	<h4 class="font-weight-bold text-uppercase text-4 mb-3 col-lg-4">잠금 장치 정보</h4>
+	<h4 class="font-weight-bold text-uppercase text-4 mb-3 col-lg-4">잠금장치 정보</h4>
 	<div class="float-left col-lg-4">
-		<input id="deptName" type="text" name="deptName" placeholder="검색할 학과명을 입력해주세요." class="form-control"  />
+		<input id="deptName" type="text" name="deptName" placeholder="검색할 학과 명을 입력해주세요." class="form-control"  />
 	</div>
 	<div class="float-left">
 	<a><input id="search" type="button" value="검색" class="btn btn-outline btn-primary btn-sm mb-2 form-control" /></a>
@@ -36,8 +36,8 @@
 								"<table class=\"table table-bordered\">";
 						html += "    <tr>";
 						html += "        <th>번호</th>";
-						html += "        <th>잠금 장치 번호</th>";
-						html += "        <th>학과명</th>";
+						html += "        <th>잠금장치 번호</th>";
+						html += "        <th>학과 명</th>";
 						html += "        <th>상태</th>";
 						html += "    </tr>";
 						for (var i = 0; i < rows.length; i++) {

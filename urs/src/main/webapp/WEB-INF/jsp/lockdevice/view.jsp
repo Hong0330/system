@@ -6,12 +6,12 @@
 							<div class="row justify-content-center">
 								<div class="card border-width-3 border-radius-0 border-color-hover-dark mb-4 col-lg-6">
 									<div class="card-body">
-										<h4 class="font-weight-bold text-uppercase text-4 mb-3">잠금 장치 정보</h4>
+										<h4 class="font-weight-bold text-uppercase text-4 mb-3">잠금장치 정보</h4>
 										<table class="shop_table cart-totals mb-5">
 											<tbody>
 												<tr>
 													<td>
-														<strong class="d-block text-color-dark line-height-1 font-weight-semibold">잠금 장치 번호<span class="product-qty"></span></strong>
+														<strong class="d-block text-color-dark line-height-1 font-weight-semibold">잠금장치 번호<span class="product-qty"></span></strong>
 													</td>
 													<td class="text-right align-top">
 														<span class="d-block text-color-dark line-height-1 font-weight-semibold"><c:out value="${row.no}" /></span>
@@ -19,7 +19,7 @@
 												</tr>
 												<tr>
 													<td>
-														<strong class="d-block text-color-dark line-height-1 font-weight-semibold">직원명<span class="product-qty"></span></strong>
+														<strong class="d-block text-color-dark line-height-1 font-weight-semibold">직원 명<span class="product-qty"></span></strong>
 													</td>
 													<td class="text-right align-top">
 														<span class="d-block text-color-dark line-height-1 font-weight-semibold"><c:out value="${row.empName}" /></span>
@@ -27,7 +27,7 @@
 												</tr>
 												<tr>
 													<td>
-														<strong class="d-block text-color-dark line-height-1 font-weight-semibold">학과명<span class="product-qty"></span></strong>
+														<strong class="d-block text-color-dark line-height-1 font-weight-semibold">학과 명<span class="product-qty"></span></strong>
 													</td>
 													<td class="text-right align-top">
 														<span class="d-block text-color-dark line-height-1 font-weight-semibold"><c:out value="${row.deptName}" /></span>

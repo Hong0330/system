@@ -11,7 +11,7 @@
 											<tbody>
 												<tr>
 													<td>
-														<strong class="d-block text-color-dark line-height-1 font-weight-semibold">학과명<span class="product-qty"></span></strong>
+														<strong class="d-block text-color-dark line-height-1 font-weight-semibold">학과 명<span class="product-qty"></span></strong>
 													</td>
 													<td class="text-right align-top">
 														<span class="d-block text-color-dark line-height-1 font-weight-semibold"><c:out value="${row.deptName}" /></span>

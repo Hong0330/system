@@ -39,6 +39,7 @@
 <script>
 	function inputPhoneNumber(obj) {
 	    var number = obj.value.replace(/[^0-9]/g, "");
+	    console.log(number);
 	    var phone = "";
 	
 	    if(number.length < 4) {
@@ -71,13 +72,14 @@
 			if (xhr.readyState === xhr.DONE) {
 				if (xhr.status === 200 || xhr.status === 201) {
 					var row = JSON.parse(xhr.responseText);
+					console.log(row);
 					if (row === null) {
 						form.submit();
 					} else {
-						if (row.cardNo != null) {
-							document.getElementById("errorCardNo").innerHTML = "<font size=\"2em\" color=\"red\">이미 존재하는 카드번호입니다.</font>";
-						} else {
+						if (row.cardNo === "${row.cardNo}") {
 							form.submit();
+						} else {
+							document.getElementById("errorCardNo").innerHTML = "<font size=\"2em\" color=\"red\">이미 존재하는 카드번호입니다.</font>";
 						}
 					}
 				} else {

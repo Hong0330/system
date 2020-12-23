@@ -37,7 +37,7 @@ function search() {
 					html += "<tr>";
 					html += "   <th>번호</th>";
 					html += "	<th>사번</th>";
-					html += "	<th>학과명</th>";
+					html += "	<th>학과 명</th>";
 					html += "	<th>이름</th>";
 					html += "<tr>";
 					

@@ -10,7 +10,7 @@
 				<input type="hidden" name="_method" value="put" />
 				<input type="hidden" name="no" value="${row.no}" />
 				<div class="form-group row">
-					<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">학과명</label>
+					<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">학과 명</label>
 					<div class="col-lg-9">
 						<input id="name" class="form-control" type="text" name="name" value="${row.name}" maxlength="33" required>
 					</div>
@@ -74,7 +74,7 @@
 					if (row === null || "${row.name}" === row.name) {
 						form.submit();
 					} else {
-						document.getElementById("error").innerHTML = "<font size=\"2em\" color=\"red\">이미 존재하는 학과명입니다.</font>";
+						document.getElementById("error").innerHTML = "<font size=\"2em\" color=\"red\">이미 존재하는 학과 명입니다.</font>";
 					}
 				} else {
 					console.error(xhr.responseText);

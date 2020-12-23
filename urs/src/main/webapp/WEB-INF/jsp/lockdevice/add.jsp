@@ -6,10 +6,10 @@
 <div class="row justify-content-center">
 	<div class="card border-width-3 border-radius-0 border-color-hover-dark mb-4 col-lg-6">
 		<div class="card-body">
-		<h4 class="font-weight-bold text-uppercase text-4 mb-3">잠금 장치 정보 등록</h4>
+		<h4 class="font-weight-bold text-uppercase text-4 mb-3">잠금장치 정보 등록</h4>
 			<form action="${request.getContextPath()}/lockdevice" method="post" class="needs-validation" onsubmit="return check(this)">
 				<div class="form-group row">
-					<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">잠금 장치 번호</label>
+					<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">잠금장치 번호</label>
 					<div class="col-lg-9">
 						<input class="form-control" id="no" type="text" name="no" maxlength="20" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
 					</div>

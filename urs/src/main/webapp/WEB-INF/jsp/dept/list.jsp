@@ -5,7 +5,7 @@
 
 	<h4 class="font-weight-bold text-uppercase text-4 mb-3 col-lg-4">학과 정보</h4>
 	<div class="float-left col-lg-4">
-		<input id="name" type="text" name="name" placeholder="검색할 학과명을 입력해주세요." class="form-control" />
+		<input id="name" type="text" name="name" placeholder="검색할 학과 명을 입력해주세요." class="form-control" />
 	</div>
 	<div class="float-left">
 		<a><input id="search" type="button" value="검색" class="btn btn-outline btn-primary btn-sm mb-2 form-control" /></a>

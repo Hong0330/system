@@ -201,8 +201,11 @@ public class StudentController {
 			throw new RuntimeException();
 		}
 		
+		System.out.println(result);
+		
 		return result;
 	}
+	
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
 		binder.setValidator(new StudentValidator());

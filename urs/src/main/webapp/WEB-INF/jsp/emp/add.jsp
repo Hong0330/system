@@ -78,7 +78,8 @@
 	        phone += number.substr(7);
 	    }
 	    obj.value = phone;
-	}
+	};
+	
 	function check(form) {
 		var xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function() {

@@ -16,7 +16,7 @@
 					<div class="col-lg-9" id="errorMemberNo"></div>
 				</div>
 				<div class="form-group row">
-					<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">학과명</label>
+					<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2 required">학과 명</label>
 					<div class="col-lg-9">
 						<select name="deptNo" class="form-control">
 							<c:forEach items="${rows}" var="row">
@@ -77,7 +77,7 @@
 	        phone += number.substr(7);
 	    }
 	    obj.value = phone;
-	}
+	};
 	
 	function check(form) {
 		var xhr = new XMLHttpRequest();

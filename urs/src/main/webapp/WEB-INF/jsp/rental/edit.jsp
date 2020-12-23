@@ -18,7 +18,7 @@
 					</div>
 				</div>
 				<div class="form-group row">
-					<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">잠금 장치 일련번호</label>
+					<label class="col-lg-3 font-weight-bold text-dark col-form-label form-control-label text-2">잠금장치 일련번호</label>
 					<div class="col-lg-9">
 						<input class="form-control" type="text" name="lockDeviceNo" value="${row.lockDeviceNo}" maxlength="33" readonly>
 					</div>
